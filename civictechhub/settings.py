@@ -25,7 +25,7 @@ SECRET_KEY = 'ym9=-4037r-k998ipk1ulvw47_$4_zt9ggt4j%us-b*=oi!0dq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://www.civictechhub.se', 'www.civictechhub.se', '54.183.36.59']
+ALLOWED_HOSTS = ['civictechhub.se', 'www.civictechhub.se']
 
 
 # Application definition
