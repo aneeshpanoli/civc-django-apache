@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+    <title>CivicTechHub.org</title>
+  </head>
+  <body>
+      <div class="wrapper">
+        <header>
+            <div class="top_header" id="navbar">
+              <div class="inner">
+                <div class="logo">
+                  <img src="{% static "img/logo.svg" %}" alt="logo">
+                </div>
+                <nav class="page_menu">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Explore</a>
+                </nav>
+              </div>
+            </div>
+
+
+            <div class="hero_header">
+              <div class="header_inner">
+                <div class="hero_content">
+                  <div class="hero_top">
+
+                    <div class="subheadline">
+                      <div class="head_bold">
+                        Together we can <br>survive this crisis
+                      </div>
+                      <div class="head_normal">
+                        Search the largest database of projects and <br>
+                        organizations dedicated to fighting COVID-19
+                      </div></div>
+                      <div class="">
+                        <img class="hero_img" src="{% static "img/pandemic.svg" %}" alt="pandemic">
+                      </div>
+                      </div>
+                      <div class="search_bar">
+
+                      </div>
+                </div>
+
+              </div>
+            </div>
+        </header>
+
+      </div>
+
+  </body>
+  <script type="text/javascript" src="{% static "js/css.js" %}"></script>
+</html>
