@@ -11,7 +11,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 
+# wsgi scheme
+os.environ['wsgi.url_scheme'] = 'https'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +31,7 @@ SECRET_KEY = 'ym9=-4037r-k998ipk1ulvw47_$4_zt9ggt4j%us-b*=oi!0dq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['civictechhub.se', 'www.civictechhub.se']
+ALLOWED_HOSTS = ['civictechhub.net', 'www.civictechhub.net']
 
 
 # Application definition

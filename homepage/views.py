@@ -21,3 +21,6 @@ def search_index(request):
 
 def test_view(request):
     return render(request,  'homepage/main.html')
+
+def submit_view(request):
+    return render(request,  'homepage/submit-project.html')
