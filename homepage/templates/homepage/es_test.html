@@ -1,0 +1,70 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "css/style_test.css" %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+  <title>CivicTechHub.org</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="navbar" id="navbar">
+      {% include "homepage/navbar.html" %}
+    </div>
+
+
+  <div class="content">
+    <nav class="navbar navbar-light bg-light">
+      <form class="form-inline">
+
+        <input
+        class="form-control mr-sm-2"
+        type="search" placeholder="Search Projects"
+        aria-label="Gender"
+        name = 'search_query'
+        value = "">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" formaction="{% url 'es_test_view' %}">Search</button>
+      </form>
+    </nav>
+
+    {% if results %}
+    <div class="txtCentrado margenSup20 grisDC">
+      <h3>We found {{ count }} result{{ count|pluralize }} for your search </h3>
+    </div>
+    <div class="search results">
+      {% for mytuple in results %}
+      <div class="images">
+        <img src="{{ mytuple.1 }}"hspace=5">{{ mytuple.0 }}
+        <img src="{% static "img/email_icon.png" %}"hspace="5">{{ mytuple.1 }}
+        <img src="{% static "img/gender_icon.png" %}"hspace="5">{{ mytuple.2 }}
+        <img src="{% static "img/address_icon.png" %}"hspace="5">{{ mytuple.3 }}
+      </div>
+      <p></p>
+      {% endfor %}
+    </div>
+    {%elif not search_term %}
+    <h3></h3>
+    {%elif not results %}
+    <p>No results found.</p>
+    {% endif %}
+
+</div>
+<div class="footer">
+  <div class="footer-header">Civic Tech Hub</div>
+  <div class="">
+
+  </div>
+</div>
+
+</body>
+<!-- <script type="text/javascript" src="{% static "js/css.js" %}"></script> -->
+</html>

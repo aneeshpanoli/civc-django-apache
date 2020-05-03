@@ -1,0 +1,16 @@
+{% load static %}
+<!doctype html>
+<html>
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+
+    <input
+    class="form-control mr-sm-2 search_template"
+    type="search" placeholder="Search Projects"
+    aria-label="Gender"
+    name = 'search_query'
+    value = "">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" formaction="{% url 'es_test_view' %}">Search</button>
+  </form>
+</nav>
+</html>

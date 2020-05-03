@@ -1,0 +1,1 @@
+curl -H "Content-Type: application/json" -XPOST "localhost:9200/devpost-2020-04-28/_doc/_bulk?pretty&refresh" --data-binary "@devpost_es.json"] 
