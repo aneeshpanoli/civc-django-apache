@@ -4,3 +4,4 @@ accounts.json
 devpost_es_formatted.json
 upload_ssh/
 download_ssh/
+*.pyc

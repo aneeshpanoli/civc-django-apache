@@ -13,13 +13,13 @@ html, body {
 }
 
 body {
-  margin: 0;
+  max-width: 90rem;
   background-color: var(--background_color_two);
   font-family:'Open Sans', sans-serif;
 }
 
 .wrapper{
-  width:100%;
+  width:auto;
   max-width: 90rem;
   margin-left: 5rem auto;
   margin-right: 5rem auto;
@@ -27,7 +27,6 @@ body {
   min-height: 10rem;
   border-left: 1px solid var(--border_color);
   border-right: 1px solid var(--border_color);
-  box-sizing: border-box;
 }
 
 .navbar {
@@ -54,6 +53,10 @@ body {
   color: var(--link_color_one);
 }
 
+.context {
+  width: inherit;
+}
+
 .logo_container {
   line-height: 6.25rem;
 }
@@ -64,7 +67,7 @@ body {
 
 
 .hero_container {
-  width: 100%;
+  width: inherit;
   height: 53.125rem;
   border-radius: 0px 0px 18.75rem 18.75rem;
   background-color: var(--background_color_one);

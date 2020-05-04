@@ -26,9 +26,12 @@ def es_test_view(request):
     query_term = ""
     if request.GET.get('search_query'):
         query_term = request.GET['search_query']
+    elif request.GET.get('browse_category'):
+        query_term = request.GET['browse_category']
+    print(request.GET)
 
     results = devpost_esearch(query_term)
-    print(results)
+    # print(results)
     context = {'results': results, 'count': len(results), 'search_term':  query_term}
     return render(request,  'homepage/es_test.html',  context)
 

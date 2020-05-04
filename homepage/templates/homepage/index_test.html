@@ -3,19 +3,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static "css/style_test.css" %}">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-
-  <title>CivicTechHub.org</title>
+  {% include "homepage/head.html" %}
 </head>
 <body>
-  <div class="wrapper">
+  <div class="wrapper container-fluid">
     <div class="navbar" id="navbar">
       {% include "homepage/navbar.html" %}
     </div>
@@ -28,11 +19,10 @@
 
             <div class="subheadline">
               <div class="head_bold">
-                Together we can <br>survive this crisis
+                Together we can survive this crisis
               </div>
               <div class="head_normal">
-                Search the largest database of projects and <br>
-                organizations dedicated to fighting COVID-19
+                Search the largest database of projects and organizations dedicated to fighting COVID-19
               </div></div>
               <div class="">
                 <img class="hero_img" src="{% static "img/pandemic.svg" %}" alt="pandemic">
@@ -45,21 +35,22 @@
         </div>
 
         <div class="browse_container">
+          <form  id="category_srch_form" action="{% url 'es_test_view' %}"></form>
           <div class="browse_header">Browse by category</div>
           <div class="categories">
 
-            <a href="" class="category_bttn"> <img src="{% static "img/tech.svg" %}" alt=""><span>Tec</span></a>
-            <a href="" class="category_bttn"> <img src="{% static "img/medical.svg" %}" alt=""><span>Medical</span></a>
-            <a href="" class="category_bttn"> <img src="{% static "img/safehome.svg" %}" alt=""><span>Safe at Home</span></a>
-            <a href="" class="category_bttn"> <img src="{% static "img/finance.svg" %}" alt=""><span>Finance</span></a>
-            <a href="" class="category_bttn"> <img src="{% static "img/mentalhealth.svg" %}" alt=""><span>Mental Health</span></a>
-            <a href="" class="category_bttn"> <img src="{% static "img/more.svg" %}" alt=""><span>More</span></a>
+            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="technology" class="category_bttn"> <img src="{% static "img/tech.svg" %}" alt=""><span>Tech</span></a>
+            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="medical" class="category_bttn"> <img src="{% static "img/medical.svg" %}" alt=""><span>Medical</span></a>
+            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="safe at home" class="category_bttn"> <img src="{% static "img/safehome.svg" %}" alt=""><span>Safe at Home</span></a>
+            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="finance" class="category_bttn"> <img src="{% static "img/finance.svg" %}" alt=""><span>Finance</span></a>
+            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="mental health" class="category_bttn"> <img src="{% static "img/mentalhealth.svg" %}" alt=""><span>Mental Health</span></a>
+            <a href="#" id="more_bttn" onclick="" value="more" class="category_bttn"> <img src="{% static "img/more.svg" %}" alt=""><span>More</span></a>
 
           </div>
         </div>
 
         <div class="featured_container">
-          <div class="featured_header">Browse by category</div>
+          <div class="featured_header">Featured projects</div>
           <div class="featured">
 
             <a href="" class="featured_bttn"> <img src="{% static "img/tech" %}" alt=""><span></span></a>
