@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     #
     'homepage',
+    'els', # for managing elasticsearch docs and indices
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+MEDIA_ROOT = '/var/www/media'

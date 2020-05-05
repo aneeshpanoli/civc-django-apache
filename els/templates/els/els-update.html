@@ -1,0 +1,91 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "css/style_test.css" %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+  <title>CivicTechHub.org</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="navbar" id="navbar">
+      {% include "homepage/navbar.html" %}
+    </div>
+
+
+  <div class="content">
+    <nav class="navbar navbar-light bg-light">
+      <form class="form-inline">
+
+        <input
+        class="form-control mr-sm-2"
+        type="search" placeholder="recId from Airtable"
+        aria-label="Gender"
+        name = 'airtable_rec_id'
+        value = "">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+      </form>
+    </nav>
+
+    {% if airtable_rec %}
+    <div class="txtCentrado margenSup20 grisDC">
+      <h3>Found 1 record in Airtable and {{ count }} record{{ count|pluralize }} in ELS database.</h3>
+    </div>
+    <div class="search results">
+      {% for mytuple in airtable_rec %}
+      <div class="images"><span>
+        recID: {{ mytuple.0 }} <br>
+        Project Title: {{ mytuple.1 }} <br>
+        Last Updated: {{ mytuple.2 }}
+      </span>
+
+      </div>
+      <p></p>
+      {% endfor %}
+      <form class="form-inline">
+
+        <input
+        class="form-control mr-sm-2"
+        type="hidden" placeholder="recId from Airtable"
+        aria-label="Gender"
+        name = 'update_record'
+        value = {{search_term}}>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Update the record in ELS</button>
+      </form>
+      <form class="form-inline">
+
+        <input
+        class="form-control mr-sm-2"
+        type="hidden" placeholder="recId from Airtable"
+        aria-label="Gender"
+        name = 'delete_record'
+        value = {{search_term}}>
+        <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit" >Delete the record in ELS</button>
+      </form>
+    </div>
+    {%elif search_term %}
+    <div class="">
+      <p><{{search_term}}</p>
+    </div>
+    {%elif not airtable_rec %}
+    <p>There are no records matching that ID.</p>
+    {% endif %}
+
+</div>
+<div class="footer">
+    {% include "homepage/footer.html" %}
+</div>
+
+</body>
+<!-- <script type="text/javascript" src="{% static "js/css.js" %}"></script> -->
+</html>

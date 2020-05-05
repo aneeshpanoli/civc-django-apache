@@ -17,23 +17,23 @@ def es_example_view(request):
         gender_term = request.GET['gender']
     search_term = name_term or gender_term
     results = esearch(firstname = name_term, gender=gender_term)
-    print(results)
+    # print(results)
     context = {'results': results, 'count': len(results), 'search_term':  search_term}
     return render(request,  'homepage/dev.html',  context)
 
-def es_test_view(request):
+def search_projects_view(request):
     results = []
     query_term = ""
     if request.GET.get('search_query'):
         query_term = request.GET['search_query']
     elif request.GET.get('browse_category'):
         query_term = request.GET['browse_category']
-    print(request.GET)
+    # print(request.GET)
 
     results = devpost_esearch(query_term)
     # print(results)
     context = {'results': results, 'count': len(results), 'search_term':  query_term}
-    return render(request,  'homepage/es_test.html',  context)
+    return render(request,  'homepage/search_project.html',  context)
 
 def home_test_view(request):
     return render(request,  'homepage/index_test.html')

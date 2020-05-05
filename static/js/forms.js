@@ -1,6 +1,7 @@
 
 
 function submit_by_category(cat_value) {
+  // Excecutes on click browse by category
   cat_value = cat_value.getAttribute('value');
   // $('#category_srch_form').remove('<input>');
   var input = $("<input>")
@@ -11,25 +12,20 @@ function submit_by_category(cat_value) {
   // console.log(cat_value);
   // console.log("called");
 }
-$(document).ready(function(){
 
-  // $("#cat_bttn").click(function(){
-  //   $('#category_srch_form').remove('<input>');
-  //   console.log($(this).attr('value'));
-  //   var input = $("<input>")
-  //              .attr("type", "hidden")
-  //              .attr("name", "browse_category").val($(this).attr('value'));
-  //   $('#category_srch_form').append(input);
-  //   $("#category_srch_form").submit();
-    // $.ajax({
-    //     url: $("#category_srch_form").attr('action'),
-    //     type: 'post',
-    //     dataType: 'json',
-    //     data: $('form#myForm').serialize(),
-    //     success: function(data) {
-    //                // ... do something with the data...
-    //              }
-    // });
-  // });
+function show_project_details(project) {
+  // $('#category_srch_form').remove('<input>');
+  card = "<div class='card mb-3'><div class='card-body'><h5 \
+  class='card-title'>Card title</h5><p class='card-text'>\
+  This is a wider card with supporting text below as a natural\
+   lead-in to additional content. This content is a little bit \
+   longer.</p><p class=card-text'><small class='text-muted'>\
+   </small></p></div></div>";
+  $(project).closest('div-proj').append(card);
+  // console.log(cat_value);
+  // console.log("called");
+}
+
+$(document).ready(function(){
 
 });

@@ -1,0 +1,62 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  {% include "homepage/head.html" %}
+</head>
+<body>
+  <div class="wrapper">
+    <div class="navbar" id="navbar">
+      {% include "homepage/navbar.html" %}
+    </div>
+
+
+    <div class="content">
+      <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+
+          <input
+          class="form-control mr-sm-2"
+          type="search" placeholder="Search Projects"
+          aria-label="Gender"
+          name = 'search_query'
+          value = "">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+          formaction="{% url 'search_projects_view' %}">Search</button>
+        </form>
+      </nav>
+
+      {% if results %}
+      <div class="txtCentrado margenSup20 grisDC">
+        <h3>We found {{ count }} result{{ count|pluralize }} for your search </h3>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center">
+        {% for mytuple in results %}
+        <div class= "card mb-3" style="width: 20rem; max-height: 40rem">
+          <img class="card-img-top" src="{{ mytuple.1 }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ mytuple.0 }}</h5>
+            <p class="card-text"><span class="d-inline-block text-truncate text-wrap"
+              style="max-width: 500px;">{{ mytuple.2 }}</span></p>
+              <a href="" onclick="return false;" class="btn btn-primary">more</a>
+
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {%elif not search_term %}
+        <h3></h3>
+        {%elif not results %}
+        <p>No results found.</p>
+        {% endif %}
+
+      </div>
+      <div class="footer">
+        {% include "homepage/footer.html" %}
+      </div>
+
+    </body>
+    <!-- <script type="text/javascript" src="{% static "js/css.js" %}"></script> -->
+    </html>
