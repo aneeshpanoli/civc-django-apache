@@ -1,50 +1,44 @@
 
 {% load static %}
-
+{% load json_tags %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   {% include "homepage/head.html" %}
 </head>
 <body>
-  <div class="wrapper">
+  <div class="wrapper container-fluid"">
     <div class="navbar" id="navbar">
       {% include "homepage/navbar.html" %}
     </div>
 
 
-    <div class="content">
-      <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-
-          <input
-          class="form-control mr-sm-2"
-          type="search" placeholder="Search Projects"
-          aria-label="Gender"
-          name = 'search_query'
-          value = "">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-          formaction="{% url 'search_projects_view' %}">Search</button>
-        </form>
-      </nav>
-
+    <div class="flex-xl-column justify-content-center"">
+      {% include "homepage/search_bar.html" %}
+      <!-- {% include "homepage/sort.html" %} -->
       {% if results %}
-      <div class="txtCentrado margenSup20 grisDC">
-        <h3>We found {{ count }} result{{ count|pluralize }} for your search </h3>
-      </div>
+
+      <div class="d-flex">
+        <!-- {% include "homepage/toggler.html" %} -->
       <div class="d-flex flex-wrap justify-content-center">
-        {% for mytuple in results %}
+        {% for query_data in results%}
         <div class= "card mb-3" style="width: 20rem; max-height: 40rem">
-          <img class="card-img-top" src="{{ mytuple.1 }}" alt="Card image cap">
+          <img class="card-img-top" src="{{ query_data.image }}" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">{{ mytuple.0 }}</h5>
-            <p class="card-text"><span class="d-inline-block text-truncate text-wrap"
-              style="max-width: 500px;">{{ mytuple.2 }}</span></p>
-              <a href="" onclick="return false;" class="btn btn-primary">more</a>
+            <h5 class="card-title text-bold-125">{{ query_data.title }}</h5>
+            <p class="card-text"><span class="d-inline-block text-truncate text-wrap proj-text text-reg-1"
+              style="max-width: 500px;">{{ query_data.subtitle }}</span></p>
+
+              <button type="button" class="btn btn-primary text-reg-1" onclick="popup_proj_details(this)" data-toggle="modal" data-target="#exampleModalCenter">
+                Read more
+              </button>
+              {{ query_data|json_script:"tags-data" }}
+              <!-- <a href="" onclick="return false;" class="btn btn-primary">more</a> -->
 
             </div>
           </div>
           {% endfor %}
+        </div>
         </div>
         {%elif not search_term %}
         <h3></h3>
@@ -53,10 +47,32 @@
         {% endif %}
 
       </div>
+      <!-- Modal -->
+      <!-- Modal -->
+      <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+          <div class="modal-content">
+              <img class="card-img-top proj-img" src="" alt="Card image cap" style="min-height:3rem;height:12rem; object-fit:cover;">
+            <div class="modal-header">
+
+              <h5 class="modal-title proj-title-pop text-bold-125" id="exampleModalLongTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body proj-text-pop text-reg-1">
+              <!-- text -->
+            </div>
+            <div class="modal-footer ">
+              <a class="btn btn-primary devpost-btn text-reg-1" href="#" target="_blank" role="button">Project Home</a>
+              <button type="button" class="btn btn-secondary text-reg-1" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="footer">
         {% include "homepage/footer.html" %}
       </div>
-
     </body>
     <!-- <script type="text/javascript" src="{% static "js/css.js" %}"></script> -->
     </html>

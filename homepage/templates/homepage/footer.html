@@ -1,16 +1,21 @@
 {% load static %}
-<!doctype html>
-<html>
-<div class="footer  text-white p-3
 
-">
+<div class="footer container-fluid p-3 mt-5">
 
-  <h1 class="w-100 my-3 pl-5">Civic Tech Hub</h1>
+  <div class="" style="width:100%">
+    <h1 class="w-100 my-3 pl-5 mt-2">Civic Tech Hub<span style="color:grey"> | </span>
+      <span ><a href="https://join.slack.com/t/civictechhub/shared_invite/zt-dlw4duki-LjqG1llwXA8KDodp3x34cg" target="_blank" style="color:orange">Join us on Slack</a></span></h1>
+  </div>
+
+<hr style="border: 1px dashed #282828;
+  border-radius: 1px;">
+
   <div class="d-flex justify-content-between mt-4">
     <section>
       <ul class=" pl-5  row ">
         <div class="col">
-          <li class="list-unstyled ">Register a group</li>
+
+          <li class="list-unstyled text-nowrap">Register a group</li>
           <li class="list-unstyled "> Find a group</li>
           <li class="list-unstyled ">About</li>
         </div>
@@ -22,20 +27,33 @@
       </ul>
     </section>
     <section class="socialfooter pr-5">
-      <ul>
-        <li class="list-unstyled"> <a href="https://github.com/civictechhub">Github</a>
-        </li>
-        <li class="list-unstyled"> <a href="https://www.instagram.com/civictechhub/">
-            Instagram
-          </a></li>
-        <li class="list-unstyled"> <a href="https://www.facebook.com/civictechhub">
+      <ul class=" pl-5  row ">
+      <div class="col">
+        <li class="list-unstyled"> <a href="https://www.facebook.com/civictechhub" target="_blank">
             Facebook
           </a></li>
-        <li class="list-unstyled"> <a href="https://twitter.com/civictechhub">Twitter</a>
+        <li class="list-unstyled"> <a href="https://www.instagram.com/civictechhub/" target="_blank">
+            Instagram
+          </a></li>
+        <li class="list-unstyled"> <a href="https://twitter.com/civictechhub" target="_blank">
+          Twitter</a>
         </li>
+      </div>
+    <div class="col">
+      <ul>
+        <li class="list-unstyled"> <a href="https://github.com/civictechhub" target="_blank">Github</a>
+        </li>
+
+          <li class="list-unstyled"> <a href="https://medium.com/@civictechhub" target="_blank">
+              Medium
+            </a></li>
+            <li class="list-unstyled"> <a href="https://www.youtube.com/channel/UCWjIvbOBLmToD4vrOHED89Q" target="_blank">
+                YouTube
+              </a></li>
+            </div>
       </ul>
+
     </section>
   </div>
 </div>
-
-</html>
+<script type="text/javascript" src="{% static "js/forms.js" %}"></script>

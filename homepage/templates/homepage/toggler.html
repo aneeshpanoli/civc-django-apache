@@ -1,0 +1,41 @@
+{% load static %}
+
+
+<!doctype html>
+<html>
+<div class="d-lg-flex-column text-bold-125 m-2">
+    <span class="d-inline-block text-nowrap"> Show results from: </span>
+
+
+    {% for i in my_list.keys %}
+    <span>Country/Region</span>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">{{i}}</label>
+    </div>
+    {% endfor %}
+
+    <h4>Project Type</h4>
+         <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">example</label>
+    </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">example</label>
+    </div>
+
+    <h4>Technologies</h4>
+
+       <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">example</label>
+    </div>   <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">example</label>
+    </div>
+
+
+</div>
+
+</html>

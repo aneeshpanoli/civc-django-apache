@@ -1,12 +1,12 @@
 {% load static %}
 
 <div class="logo_container">
-  <img class="logo" src="{% static "img/logo.svg" %}" alt="logo">
+  <a href="{% url 'home_view' %}" target=""><img class="logo" src="{% static "img/logo.svg" %}" alt="logo"></a>
 </div>
-<nav class="page_menu">
+<!-- <nav class="page_menu mt-3">
   <a href="{% url 'home_view' %}">Home</a>
   <a href="#">About</a>
   <a href="#">Blog</a>
   <a href="#">Explore</a>
-  <a href="{% url 'submit_view' %}">Submit A Project</a>
-</nav>
+  <a href="{% url 'submit_view' %}" class="text-nowrap">Submit A Project</a>
+</nav> -->

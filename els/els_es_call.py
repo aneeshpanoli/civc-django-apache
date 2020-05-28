@@ -1,4 +1,4 @@
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, helpers
 from elasticsearch_dsl import Search, Q
 from .split_json import  write_json
 from .process_airtable import AirtableProcessor
@@ -11,7 +11,7 @@ def els_search(airtable_rec_id):
     q = Q("multi_match", query=airtable_rec_id, fields=['recId'])
     s = Search(using=client, index="submissions").query(q)
     response = s.execute()
-    print('Total {response.hits.total} hits found.')
+    print(f'Total {response.hits.total} hits found.')
     search = get_results(response)
     return search, s
 
@@ -22,8 +22,14 @@ def els_delete(airtable_rec_id):
 def els_update(airtable_rec_id):
     client = Elasticsearch()
     data = make_data_dict(airtable_rec_id)
-    client.update(index='submissions',doc_type='_doc',id=airtable_rec_id, #hit.meta.id
-                body={"doc": data})
+    # try to update
+    try:
+        client.update(index='submissions',doc_type='_doc',id=airtable_rec_id, #hit.meta.id
+                    body={"doc": data})
+    # if fails create
+    except:
+        print("couldnt update, id not found, adding to els")
+        print(els_ingest(client, airtable_rec_id, data))
 
 
 def get_results(response):
@@ -34,6 +40,19 @@ def get_results(response):
         results.append(result_tuple)
     return results
 
+def els_ingest(es, airtable_rec_id, data):
+    # data = make_data_dict(airtable_rec_id)
+    data_dict = {
+    '_op_type': 'create',
+    '_index': 'submissions',
+    '_id': airtable_rec_id,
+    'doc': data
+    }
+    helpers.bulk(es, [data_dict])
+
+
+
+
 def make_data_dict(airtable_rec_id):
     airtable = AirtableProcessor('Group submissions')
     columns = ['recId', 'GroupName', 'Description', 'Status', 'Country',
@@ -42,8 +61,10 @@ def make_data_dict(airtable_rec_id):
                'Role', 'TechStack', 'Needs', 'StartDate', 'EndDate', 'LastUpdated']
     data = {i:"" for i in columns}
     a_rec = airtable.get_a_record(airtable_rec_id)
+    # print(a_rec)
     for col in a_rec['fields']:
         if col in columns:
+            # print(col)
             col_value = a_rec['fields'][col]
             val_append = col_value
             if isinstance(col_value, list):
@@ -51,10 +72,9 @@ def make_data_dict(airtable_rec_id):
                 val_append = []
                 for rec in col_value:
                     if rec.startswith('rec'):
-                        a_rec = rec_table.get_a_record(rec)
-                        print(a_rec)
-                        val_append.append(a_rec['fields']['Name'])
-
+                        col_rec = rec_table.get_a_record(rec)
+                        # print(a_rec)
+                        val_append.append(col_rec['fields']['Name'])
             data[col] = val_append
     return data
 

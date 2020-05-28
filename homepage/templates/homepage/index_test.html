@@ -2,73 +2,52 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-  {% include "homepage/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "css/style_test.css" %}">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+  <title>CivicTechHub.org</title>
 </head>
+
 <body>
-  <div class="wrapper container-fluid">
+  <div class="wrapper">
     <div class="navbar" id="navbar">
       {% include "homepage/navbar.html" %}
     </div>
 
 
     <div class="content">
-      <div class="hero_container">
-        <div class="hero_content">
-          <div class="hero_top">
+      <!-- content goes here -->
+      {% include "homepage/search_bar.html" %}
+      {% include "homepage/sort.html" %}
 
-            <div class="subheadline">
-              <div class="head_bold">
-                Together we can survive this crisis
-              </div>
-              <div class="head_normal">
-                Search the largest database of projects and organizations dedicated to fighting COVID-19
-              </div></div>
-              <div class="">
-                <img class="hero_img" src="{% static "img/pandemic.svg" %}" alt="pandemic">
-              </div>
-            </div>
-            <div class="search_bar">
-              {% include "homepage/search_bar.html" %}
-            </div>
-          </div>
-        </div>
-
-        <div class="browse_container">
-          <form  id="category_srch_form" action="{% url 'es_test_view' %}"></form>
-          <div class="browse_header">Browse by category</div>
-          <div class="categories">
-
-            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="technology" class="category_bttn"> <img src="{% static "img/tech.svg" %}" alt=""><span>Tech</span></a>
-            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="medical" class="category_bttn"> <img src="{% static "img/medical.svg" %}" alt=""><span>Medical</span></a>
-            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="safe at home" class="category_bttn"> <img src="{% static "img/safehome.svg" %}" alt=""><span>Safe at Home</span></a>
-            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="finance" class="category_bttn"> <img src="{% static "img/finance.svg" %}" alt=""><span>Finance</span></a>
-            <a href="#" id="cat_bttn" onclick="submit_by_category(this); return false;" value="mental health" class="category_bttn"> <img src="{% static "img/mentalhealth.svg" %}" alt=""><span>Mental Health</span></a>
-            <a href="#" id="more_bttn" onclick="" value="more" class="category_bttn"> <img src="{% static "img/more.svg" %}" alt=""><span>More</span></a>
-
-          </div>
-        </div>
-
-        <div class="featured_container">
-          <div class="featured_header">Featured projects</div>
-          <div class="featured">
-
-            <a href="" class="featured_bttn"> <img src="{% static "img/tech" %}" alt=""><span></span></a>
-            <a href="" class="featured_bttn"> <img src="{% static "img/medic" %}" alt=""><span></span></a>
-            <a href="" class="featured_bttn"> <img src="{% static "img/safe" %}" alt=""><span></span></a>
-
-
-          </div>
-        </div>
-
-      </div>
-      <div class="footer">
-        <div class="footer-header">Civic Tech Hub</div>
-        <div class="">
-
-        </div>
+      <div class="d-flex">
+        {% include "homepage/toggler.html" %}
+        {% include "homepage/search_grid.html" %}
       </div>
 
-    </body>
-    <!-- <script type="text/javascript" src="{% static "js/css.js" %}"></script> -->
-    </html>
+
+    </div></div>
+          {% include "homepage/footer.html" %}
+
+</body>
+<!-- <script type="text/javascript" src="{% static "js/css.js" %}"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.0.slim.min.js"
+  integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</html>

@@ -31,7 +31,7 @@ SECRET_KEY = 'ym9=-4037r-k998ipk1ulvw47_$4_zt9ggt4j%us-b*=oi!0dq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['civictechhub.net', 'www.civictechhub.net']
+ALLOWED_HOSTS = ['civictechhub.net', 'civictechhub.org', 'www.civictechhub.net', 'www.civictechhub.org']
 
 
 # Application definition
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -130,3 +131,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = '/var/www/media'
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000/',
+)

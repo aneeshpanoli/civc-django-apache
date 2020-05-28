@@ -1,5 +1,10 @@
 from django.shortcuts import render
-from .es_call import esearch, devpost_esearch
+from .es_call import esearch, devpost_esearch, search_query_dict
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
+from django.http import HttpResponsePermanentRedirect
+
+
 # Create your views here.
 
 
@@ -21,6 +26,7 @@ def es_example_view(request):
     context = {'results': results, 'count': len(results), 'search_term':  search_term}
     return render(request,  'homepage/dev.html',  context)
 
+@csrf_protect
 def search_projects_view(request):
     results = []
     query_term = ""
@@ -31,7 +37,7 @@ def search_projects_view(request):
     # print(request.GET)
 
     results = devpost_esearch(query_term)
-    # print(results)
+    # print(results[0])
     context = {'results': results, 'count': len(results), 'search_term':  query_term}
     return render(request,  'homepage/search_project.html',  context)
 
@@ -40,7 +46,15 @@ def home_test_view(request):
 
 #==================== production views===========================================
 
+def dev_view(request):
+    # print(request.GET['q'])
+    res = search_query_dict(request.GET['q'])
+    return JsonResponse(res)
+
 def home_view(request):
+    # root_url  = request.build_absolute_uri('/')[:-1].strip("/")
+    # if 'civictechhub.org' in root_url:
+    #     return HttpResponsePermanentRedirect('https://www.civictechhub.net')
     return render(request,  'homepage/index.html')
 
 def submit_view(request):

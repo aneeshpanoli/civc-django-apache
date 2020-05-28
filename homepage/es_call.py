@@ -1,5 +1,6 @@
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Q
+import json
 
 
 def esearch(firstname="", gender=""):
@@ -8,10 +9,26 @@ def esearch(firstname="", gender=""):
     Q("match", gender=gender)], minimum_should_match=1)
     s = Search(using=client, index="bank").query(q)[0:20]
     response = s.execute()
-    print('Total {response.hits.total} hits found.')
+    # print('Total {response.hits.total} hits found.')
     search = get_results(response)
     return search
 
+def search_query_dict(query_dict):
+    '''
+    axios params:
+    'params': {
+                'q':{
+                    'query':{
+                        'match_phrase':{
+                            'title': searchValue
+                        }
+                    }
+                }
+            }
+    '''
+    client = Elasticsearch()
+    results = client.search(index="devpost-2020-04", body=query_dict)
+    return results['hits']
 
 def get_results(response):
     results = []
@@ -23,7 +40,7 @@ def get_results(response):
 
 def devpost_esearch(search_query):
     client = Elasticsearch()
-    q = Q("multi_match", query=search_query, fields=['title', 'subtitleOriginal', 'storyTextOriginal'])
+    q = Q("multi_match", query=search_query, fields=['title', 'subtitle', 'storyText'])
     s = Search(using=client, index="devpost-2020-04").query(q)[0:20]
     response = s.execute()
     # print(f'Total {response.hits.total} hits found. Search query: {search_query}')
@@ -33,9 +50,10 @@ def devpost_esearch(search_query):
 def get_devpost_results(response):
     results = []
     for hit in response:
-        result_tuple = (hit.title, hit.image, hit.subtitleOriginal,
-         hit.storyTextOriginal, hit.url)
-        results.append(result_tuple)
+        # print(hit)
+        result_dict = {"title":hit.title, "image": hit.image, "subtitle":hit.subtitle,
+         "text":hit.storyText, "url":hit.url}
+        results.append(result_dict)
     return results
 
 def devpost_kw_esearch(key_word):
@@ -43,12 +61,6 @@ def devpost_kw_esearch(key_word):
     q = Q("multi_match", query=key_word, fields=['title', 'subtitleOriginal', 'keywords'])
     s = Search(using=client, index="devpost-2020-04").query(q)[0:20]
     response = s.execute()
-    print('Total {response.hits.total} hits found.')
+    # print('Total {response.hits.total} hits found.')
     search = get_devpost_results(response)
     return search
-
-
-
-if __name__ == '__main__':
-    print(f"Opal guy details: {esearch(firstname = 'opal')}\n" )
-    print(f"the first 20 f gender details:{esearch(gender = 'f')}\n")
